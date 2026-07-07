@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaveY971 Trans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS RESET & PRÉMIUM ALAPOK --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #131a2c;
+            --bg-card-hover: #1a233a;
+            --accent: #00f2fe;
+            --accent-grad: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --btn-steam-grad: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --btn-steam-hover-grad: linear-gradient(135deg, #ffffff 0%, #a0aec0 100%);
+            --text-main: #ffffff;
+            --text-muted: #8e9bb2;
+            --border: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(0, 242, 254, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- LEKEREKÍTETT PRÉMIUM NAVIGÁCIÓ --- */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(19, 26, 44, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- HERO SZEKCIÓ (TELJESEN KÖZÉPRE IGAZÍTVA) --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(180deg, rgba(11, 15, 25, 0.8) 0%, rgba(11, 15, 25, 0.95) 100%), url('kepek/herokep.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-content h1 span {
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--accent-grad);
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
+        }
+
+        /* --- KÖZÖS CÍMSOROK --- */
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .section-header h2 span {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        section {
+            padding: 120px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- MODERN ASZIMMETRIKUS GRID GALÉRIA --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .grid-6 { grid-column: span 6; height: 400px; }
+        .grid-4 { grid-column: span 4; height: 350px; }
+        .grid-8 { grid-column: span 8; height: 350px; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 15, 25, 0.9) 0%, rgba(11, 15, 25, 0) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-overlay h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.04);
+            filter: grayscale(0%);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* --- MODOK ÉS LETÖLTÉSEK --- */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .mod-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mod-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+        }
+
+        .mod-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .mod-version {
+            font-size: 12px;
+            font-weight: 700;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mod-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #4edf7a;
+        }
+
+        .mod-card h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .mod-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .truck-list-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .truck-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .truck-tag {
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+
+        /* KIEMELT GRADIENSES STEAM GOMB EFFEKTJEI */
+        .btn-steam {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px;
+            background: var(--btn-steam-grad);
+            color: #0b0f19;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-steam i {
+            font-size: 20px;
+            color: #0b0f19;
+            transition: color 0.4s ease;
+        }
+
+        .btn-steam:hover {
+            background: var(--btn-steam-hover-grad);
+            color: #0b0f19;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- KÖZÖSSÉG / SOCIAL GRID --- */
+        .social-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .social-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-card i {
+            font-size: 28px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .social-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .social-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .social-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .social-card.youtube:hover i { color: #ff0000; }
+        .social-card.truckersbook:hover i { color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 60px;
+        }
+
+        
+        /* Kisebb asztali gépek és tabletek (992px alatt) */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 52px;
+            }
+            .grid-6, .grid-4, .grid-8 {
+                grid-column: span 6; 
+                height: 350px;
+            }
+        }
+
+        /* Mobiltelefonok (768px alatt) */
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0; 
+            }
+
+            /* Navigáció átalakítása tapinthatóbbá */
+            .navbar {
+                top: 10px;
+                width: 95%;
+                padding: 15px 20px;
+                flex-direction: column; 
+                gap: 12px;
+                border-radius: 24px;   
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            /* Hero igazítások mobilon */
+            .hero {
+                padding-top: 120px; 
+            }
+
+            .hero-content h1 {
+                font-size: 38px; 
+                margin-bottom: 15px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            /* Galéria átalakítása tisztán egy oszlopossá */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .grid-6, .grid-4, .grid-8 {
+                grid-column: span 1fr;
+                height: 280px; 
+            }
+
+            .gallery-overlay {
+                opacity: 1; /* Mobilon nincs hover (egérmutató), így a szöveg fixen látható */
+                background: linear-gradient(to top, rgba(11, 15, 25, 0.95) 10%, rgba(11, 15, 25, 0.2) 100%);
+                padding: 20px;
+            }
+
+            /* Mod kártya és letöltések mobilra */
+            .download-grid {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+
+            .mod-card {
+                padding: 25px;
+            }
+
+            .mod-card h3 {
+                font-size: 22px;
+            }
+
+            /* Közösségi linkek egymás alá */
+            .social-row {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+                gap: 15px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigáció -->
+    <nav class="navbar">
+        <div class="nav-logo">DaveY971 <span>Trans</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Főoldal</a></li>
+            <li><a href="#gallery">Élményképek</a></li>
+            <li><a href="#downloads">Mod</a></li>
+            <li><a href="#social">Közösség / Linkek</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Szekció-->
+    <header id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>DaveY971 <span>Trans</span></h1>
+            <p>Hivatalosan is megjelent a DaveY971 Trans kamion/pótkocsi festés mod legújabb, 2.0-ás verziója. A projekt keretében egy teljesen új, modernebb és letisztultabb vizuális arculatot kapott a cég, amely szakít a korábbi verzióval és egy új szintre emeli a megjelenést.</p>
+            <a href="#downloads" class="btn-primary">
+                <span>Mod letöltése</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Élményképek-->
+    <section id="gallery">
+        <div class="section-header">
+            <h2>Élményképek</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item grid-6">
+                <img src="kepek/scaniar.png" alt="Scania R">
+                <div class="gallery-overlay">
+                    <h3>Scania R Paintjob</h3>
+                    <p>A flotta alapköve, a friss arculattal.</p>
+                </div>
+            </div>
+            <div class="gallery-item grid-6">
+                <img src="kepek/estiscania.png" alt="Pótkocsi">
+                <div class="gallery-overlay">
+                    <h3>Scania R Paintjob az esti órákban.</h3>
+                    <p>A Scania szerelvény este a lerakón.</p>
+                </div>
+            </div>
+            <div class="gallery-item grid-4">
+                <img src="kepek/regipotkocsi.png" alt="Régi pótkocsi">
+                <div class="gallery-overlay">
+                    <h3>Régi DaveY971 Trans pótkocsi.</h3>
+                    <p>Itt megtekinthető az előző generációs elavult DaveY971 Trans pótkocsi.</p>
+                </div>
+            </div>
+            <div class="gallery-item grid-8">
+                <img src="kepek/volvokep.png" alt="Volvo FH16">
+                <div class="gallery-overlay">
+                    <h3>Volvo FH16 Aero</h3>
+                    <p>A flotta legújabb tagja éles bevetésen</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letölthető Mod Szekció -->
+    <section id="downloads">
+        <div class="section-header">
+            <h2>Letöltés</h2>
+        </div>
+        <div class="download-grid">
+            
+            <!-- Mod Kártya -->
+            <div class="mod-card">
+                <div>
+                    <div class="mod-meta">
+                        <span class="mod-version">v2.0 Hivatalos</span>
+                        <span class="mod-price">150 € <span style="color:var(--text-muted); font-size:13px; font-weight:400;">/ játékon belül</span></span>
+                    </div>
+                    <h3>DaveY971 Trans Paintjob Pack</h3>
+                    <p>Megérkezett a 2.0-ás verzió! Teljesen új, modernebb és letisztultabb vizuális arculattal, amely új szintre emeli a DaveY971 Trans játékbeli megjelenését.</p>
+                    
+                    <div class="truck-list-title">Támogatott Járművek</div>
+                    <div class="truck-tags">
+                        <span class="truck-tag">Scania R</span>
+                        <span class="truck-tag">Volvo FH16 Aero</span>
+                        <span class="truck-tag">Saját Pótkocsi</span>
+                    </div>
+                </div>
+                
+                <!-- Gradienses Steam Workshop Gomb -->
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3757846894" target="_blank" class="btn-steam">
+                    <i class="fa-brands fa-steam"></i>
+                    <span>Feliratkozás Steam Workshopon</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Közösség -->
+    <section id="social">
+        <div class="section-header">
+            <h2>Közösség & linkek</h2>
+        </div>
+        <div class="social-row">
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@DaveY971" target="_blank" class="social-card youtube">
+                <i class="fa-brands fa-youtube"></i>
+                <div>
+                    <h3>YouTube Csatorna</h3>
+                    <p>Élő adások, videók</p>
+                </div>
+            </a>
+            
+            <!-- TruckersBook -->
+            <a href="#" target="_blank" class="social-card truckersbook">
+                <i class="fa-solid fa-flag-checkered"></i>
+                <div>
+                    <h3>TruckersBook VTC</h3>
+                    <p>Hamarosan megnyitja kapuit!</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 DaveY971 Trans. Minden jog fenntartva.</p>
+    </footer>
+
+</body>
+</html>
